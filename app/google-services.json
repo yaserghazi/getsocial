@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "810575470098",
+    "project_id": "getsocial-3f61c",
+    "storage_bucket": "getsocial-3f61c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:810575470098:android:630ac47851e9648f6c42cb",
+        "android_client_info": {
+          "package_name": "sa.edu.getsocial"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "810575470098-92mhnv0m5tr7gibqacltq7mcer77atn8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDavkvu-urmdUXW3zEONTrUDiKxxKSN8FQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "810575470098-92mhnv0m5tr7gibqacltq7mcer77atn8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
