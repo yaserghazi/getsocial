@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:layoutDirection="ltr"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/tool_bar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_45sdp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="Add Quiz"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_14sdp" />
+
+                <ImageView
+                    android:id="@+id/back"
+                    android:layout_width="@dimen/_12sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:background="@drawable/arrow_left"
+                    android:backgroundTint="@color/white" />
+            </RelativeLayout>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="@dimen/_10sdp">
+
+
+            <EditText
+                android:id="@+id/title"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_35sdp"
+                android:background="@drawable/rounded_edittext_gray"
+                android:gravity="start|center_vertical"
+
+                android:hint="course name"
+                android:inputType="text"
+                android:lines="5"
+                android:minHeight="@dimen/_35sdp"
+                android:padding="@dimen/_5sdp"
+                android:textSize="@dimen/_12sdp" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/date"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_35sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/rounded_edittext_gray"
+                    android:focusable="false"
+                    android:gravity="start|center_vertical"
+                    android:hint="date"
+                    android:inputType="date"
+                    android:minHeight="@dimen/_35sdp"
+                    android:padding="@dimen/_5sdp"
+                    android:textSize="@dimen/_12sdp" />
+
+                <EditText
+                    android:id="@+id/grade"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_35sdp"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/rounded_edittext_gray"
+                    android:gravity="start|center_vertical"
+                    android:hint="grade"
+                    android:inputType="text"
+                    android:minHeight="@dimen/_35sdp"
+                    android:padding="@dimen/_5sdp"
+                    android:textSize="@dimen/_12sdp" />
+
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_margin="@dimen/_10sdp"
+
+                android:text="Add question"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_14sdp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded_edittext_gray"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_margin="@dimen/_10sdp"
+
+                    android:text="Question details"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_12sdp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="@dimen/_10sdp"
+
+                        android:text="Question"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12sdp" />
+
+                    <EditText
+                        android:id="@+id/Question"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_30sdp"
+                        android:background="@drawable/rounded_edittext_gray"
+                        android:gravity="start|center_vertical"
+
+                        android:hint="course name"
+                        android:inputType="text"
+                        android:lines="5"
+                        android:minHeight="@dimen/_35sdp"
+                        android:padding="@dimen/_5sdp"
+                        android:textSize="@dimen/_12sdp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="@dimen/_10sdp"
+
+                        android:text="A"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12sdp" />
+
+                    <EditText
+                        android:id="@+id/answer1"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_30sdp"
+                        android:background="@drawable/rounded_edittext_gray"
+                        android:gravity="start|center_vertical"
+
+                        android:hint="answer1"
+                        android:inputType="text"
+                        android:minHeight="@dimen/_35sdp"
+                        android:padding="@dimen/_5sdp"
+                        android:textSize="@dimen/_12sdp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="@dimen/_10sdp"
+
+                        android:text="B"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12sdp" />
+
+                    <EditText
+                        android:id="@+id/answer2"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_30sdp"
+                        android:background="@drawable/rounded_edittext_gray"
+                        android:gravity="start|center_vertical"
+
+                        android:hint="answer2"
+                        android:inputType="text"
+                        android:minHeight="@dimen/_35sdp"
+                        android:padding="@dimen/_5sdp"
+                        android:textSize="@dimen/_12sdp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="@dimen/_10sdp"
+
+                        android:text="C"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12sdp" />
+
+                    <EditText
+                        android:id="@+id/answer3"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_30sdp"
+                        android:background="@drawable/rounded_edittext_gray"
+                        android:gravity="start|center_vertical"
+
+                        android:hint="answer3"
+                        android:inputType="text"
+                        android:lines="5"
+                        android:minHeight="@dimen/_35sdp"
+                        android:padding="@dimen/_5sdp"
+                        android:textSize="@dimen/_12sdp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="@dimen/_10sdp"
+
+                        android:text="D"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12sdp" />
+
+                    <EditText
+                        android:id="@+id/answer4"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_30sdp"
+                        android:background="@drawable/rounded_edittext_gray"
+                        android:gravity="start|center_vertical"
+
+                        android:hint="answer4"
+                        android:inputType="text"
+                        android:lines="5"
+                        android:minHeight="@dimen/_35sdp"
+                        android:padding="@dimen/_5sdp"
+                        android:textSize="@dimen/_12sdp" />
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/addQuestion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_40sdp"
+
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginBottom="@dimen/_5sdp"
+                    android:text="add Question"
+                    android:textSize="@dimen/_12sdp" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/buttonSave"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_45sdp"
+                android:layout_marginStart="@dimen/_30sdp"
+
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_30sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:text="Save"
+                android:textSize="@dimen/_12sdp" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>

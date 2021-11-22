@@ -16,7 +16,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
@@ -36,7 +35,7 @@ import java.util.List;
 
 import sa.edu.getsocial.Faculty.Fragments.AnnouncementFragment;
 import sa.edu.getsocial.Faculty.Fragments.ChatFragment;
-import sa.edu.getsocial.Faculty.Fragments.NotificationFragment;
+import sa.edu.getsocial.Faculty.Fragments.QuizzesFragment;
 import sa.edu.getsocial.Notification.Notifications.Token;
 import sa.edu.getsocial.R;
 import sa.edu.getsocial.login;
@@ -136,7 +135,7 @@ public class FacultyMainActivity extends AppCompatActivity implements Navigation
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new NotificationFragment());
+        adapter.addFragment(new QuizzesFragment());
         adapter.addFragment(new AnnouncementFragment());
         adapter.addFragment(new ChatFragment());
         viewPager.setAdapter(adapter);
