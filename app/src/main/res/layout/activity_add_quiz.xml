@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
+    android:fillViewport="true"
     android:layoutDirection="ltr"
     android:orientation="vertical">
 
@@ -54,13 +54,13 @@
 
 
             <EditText
-                android:id="@+id/title"
+                android:id="@+id/course_name"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_35sdp"
                 android:background="@drawable/rounded_edittext_gray"
                 android:gravity="start|center_vertical"
 
-                android:hint="course name"
+                android:hint="@string/course_name"
                 android:inputType="text"
                 android:lines="5"
                 android:minHeight="@dimen/_35sdp"
@@ -98,7 +98,7 @@
                     android:background="@drawable/rounded_edittext_gray"
                     android:gravity="start|center_vertical"
                     android:hint="grade"
-                    android:inputType="text"
+                    android:inputType="numberDecimal"
                     android:minHeight="@dimen/_35sdp"
                     android:padding="@dimen/_5sdp"
                     android:textSize="@dimen/_12sdp" />
@@ -147,7 +147,7 @@
                         android:textSize="@dimen/_12sdp" />
 
                     <EditText
-                        android:id="@+id/Question"
+                        android:id="@+id/QuestionE"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_30sdp"
                         android:background="@drawable/rounded_edittext_gray"
@@ -176,7 +176,7 @@
                         android:textSize="@dimen/_12sdp" />
 
                     <EditText
-                        android:id="@+id/answer1"
+                        android:id="@+id/answer1E"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_30sdp"
                         android:background="@drawable/rounded_edittext_gray"
@@ -204,7 +204,7 @@
                         android:textSize="@dimen/_12sdp" />
 
                     <EditText
-                        android:id="@+id/answer2"
+                        android:id="@+id/answer2E"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_30sdp"
                         android:background="@drawable/rounded_edittext_gray"
@@ -232,7 +232,7 @@
                         android:textSize="@dimen/_12sdp" />
 
                     <EditText
-                        android:id="@+id/answer3"
+                        android:id="@+id/answer3E"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_30sdp"
                         android:background="@drawable/rounded_edittext_gray"
@@ -261,7 +261,7 @@
                         android:textSize="@dimen/_12sdp" />
 
                     <EditText
-                        android:id="@+id/answer4"
+                        android:id="@+id/answer4E"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_30sdp"
                         android:background="@drawable/rounded_edittext_gray"
@@ -287,6 +287,17 @@
                     android:textSize="@dimen/_12sdp" />
             </LinearLayout>
 
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </androidx.core.widget.NestedScrollView>
+
             <Button
                 android:id="@+id/buttonSave"
                 android:layout_width="match_parent"
@@ -304,4 +315,4 @@
     </LinearLayout>
 
 
-</RelativeLayout>
+</ScrollView>
