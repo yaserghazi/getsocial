@@ -23,17 +23,18 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import sa.edu.getsocial.Adapters.AnnouncementAdapter;
+import sa.edu.getsocial.Adapters.QuizzesAdapter;
 import sa.edu.getsocial.Faculty.AddAnnouncementActivity;
-import sa.edu.getsocial.Models.AnnouncementModel;
+import sa.edu.getsocial.Faculty.AddQuizActivity;
+import sa.edu.getsocial.Models.QuizModel;
 import sa.edu.getsocial.R;
 
 
 public class QuizzesFragment extends Fragment {
 
 
-    List<AnnouncementModel> resultsList;
-    AnnouncementAdapter nAdapter;
+    List<QuizModel> resultsList;
+    QuizzesAdapter nAdapter;
     RecyclerView recyclerView;
     ProgressBar progress_bar;
 
@@ -62,7 +63,7 @@ public class QuizzesFragment extends Fragment {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setHasFixedSize(true);
 
-        nAdapter = new AnnouncementAdapter(getContext(), resultsList);
+        nAdapter = new QuizzesAdapter(getContext(), resultsList);
         recyclerView.setAdapter(nAdapter);
 
         progress_bar.setVisibility(View.VISIBLE);
@@ -74,13 +75,12 @@ public class QuizzesFragment extends Fragment {
                 progress_bar.setVisibility(View.GONE);
 
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    AnnouncementModel model = snapshot.getValue(AnnouncementModel.class);
+                    QuizModel model = snapshot.getValue(QuizModel.class);
                     resultsList.add(model);
                     nAdapter.notifyDataSetChanged();
                 }
                 if (resultsList.size() == 0) {
                     no_data.setVisibility(View.VISIBLE);
-                    Toast.makeText(getContext(), "No data", Toast.LENGTH_SHORT).show();
                 } else {
                     no_data.setVisibility(View.GONE);
 
@@ -89,14 +89,13 @@ public class QuizzesFragment extends Fragment {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                Toast.makeText(getContext(), "No data", Toast.LENGTH_SHORT).show();
             }
         });
 
         view.findViewById(R.id.add_fab).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getContext(), AddAnnouncementActivity.class);
+                Intent intent = new Intent(getContext(), AddQuizActivity.class);
                 startActivity(intent);
 
             }

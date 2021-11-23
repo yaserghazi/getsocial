@@ -22,23 +22,16 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import sa.edu.getsocial.Faculty.FacultyMainActivity;
+import sa.edu.getsocial.Models.User;
+import sa.edu.getsocial.Student.StudentMainActivity;
 
 public class login extends AppCompatActivity {
-    public Button button;
     CheckBox remember;
     Button b1;
     EditText ed1, ed2;
-    TextView tx1, tx2;
-    int counter = 10;
-    boolean isValid = false;
+    TextView tx1;
     String userName = "";
     String userPassword = "";
-
-    /* Class to hold credentials */
-    class Credentials {
-        String name = "Admin";
-        String password = "123456";
-    }
 
     ProgressDialog dialog;
 
@@ -59,12 +52,19 @@ public class login extends AppCompatActivity {
         /* Describe the logic when the login button is clicked */
         SharedPreferences preferences = getSharedPreferences("checkbox", MODE_PRIVATE);
         String checkbox = preferences.getString("remember", " ");
+
+        SharedPreferences editor = getSharedPreferences("login", MODE_PRIVATE);
         if (checkbox.equals("true")) {
-            Intent intent = new Intent(login.this, FacultyMainActivity.class);
-            startActivity(intent);
+            if (editor.getInt("UserType", 0) == 1) {
+                Intent intent = new Intent(login.this, StudentMainActivity.class);
+                startActivity(intent);
+            } else {
+                Intent intent = new Intent(login.this, FacultyMainActivity.class);
+                startActivity(intent);
+            }
+
         } else if (checkbox.equals("false")) {
             Toast.makeText(this, "Please Sign in", Toast.LENGTH_SHORT).show();
-
         }
         remember.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -120,33 +120,23 @@ public class login extends AppCompatActivity {
                         User user = snapshot.getValue(User.class);
                         if (user.getUsername().equalsIgnoreCase(userName) &&
                                 user.getPassword().equalsIgnoreCase(password)) {
+                            SharedPreferences.Editor editor = getSharedPreferences("login", MODE_PRIVATE).edit();
+                            editor.putString("Name", user.getUsername());
+                            editor.putString("ID", user.getId());
+                            editor.putString("email", user.getEmail());
+                            editor.putInt("UserType", user.getType());
 
-                            if(isPressed) {
-                                dialog.dismiss();
+                            editor.apply();
+                            dialog.dismiss();
 
+                            if (isPressed) {
 
                                 if (user.getType() == 1) {
-                                    SharedPreferences.Editor editor = getSharedPreferences("login", MODE_PRIVATE).edit();
-                                    editor.putString("Name", user.getUsername());
-                                    editor.putString("ID", user.getId());
-                                    editor.putString("email", user.getEmail());
-                                    editor.putInt("UserType", user.getType());
-
-                                    editor.apply();
-
+                                    Intent intent = new Intent(login.this, StudentMainActivity.class);
+                                    startActivity(intent);
+                                } else if (user.getType() == 2) {
                                     Intent intent = new Intent(login.this, FacultyMainActivity.class);
                                     startActivity(intent);
-
-
-                                } else if (user.getType() == 2) {
-                                    SharedPreferences.Editor editor = getSharedPreferences("login", MODE_PRIVATE).edit();
-                                    editor.putString("Name", user.getUsername());
-                                    editor.putString("ID", user.getId());
-                                    editor.putString("email", user.getEmail());
-                                    editor.putInt("UserType", user.getType());
-                                    //       Intent intent = new Intent(login.this, AcademicMainActivity.class);
-                                    //       startActivity(intent);
-
                                 }
                                 isPressed = false;
                                 finish();
@@ -164,18 +154,7 @@ public class login extends AppCompatActivity {
 
     }
 
-    /* Validate the credentials */
-    private boolean validate(String userName, String userPassword) {
-        /* Get the object of Credentials class */
-        Credentials credentials = new Credentials();
 
-        /* Check the credentials */
-        if (userName.equals(credentials.name) && userPassword.equals(credentials.password)) {
-            return true;
-        }
-
-        return false;
-    }
 }
 
 

@@ -1,19 +1,18 @@
-package sa.edu.getsocial.Faculty.Fragments;
+package sa.edu.getsocial.Student.Fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -30,14 +29,14 @@ import sa.edu.getsocial.Models.AnnouncementModel;
 import sa.edu.getsocial.R;
 
 
-public class AnnouncementFragment extends Fragment {
+public class RequestFragment extends Fragment {
 
     List<AnnouncementModel> resultsList;
     AnnouncementAdapter nAdapter;
     RecyclerView recyclerView;
     ProgressBar progress_bar;
 
-    public AnnouncementFragment() {
+    public RequestFragment() {
         // Required empty public constructor
     }
 
@@ -51,7 +50,7 @@ public class AnnouncementFragment extends Fragment {
 
         DatabaseReference databaseReference = FirebaseDatabase.
                 getInstance("https://getsocial-3f61c-default-rtdb.firebaseio.com/")
-                .getReference().child("Announcement");
+                .getReference().child("Request");
 
         TextView no_data = (TextView) view.findViewById(R.id.no_data);
 
@@ -80,6 +79,7 @@ public class AnnouncementFragment extends Fragment {
                 }
                 if (resultsList.size() == 0) {
                     no_data.setVisibility(View.VISIBLE);
+                    Toast.makeText(getContext(), "No data", Toast.LENGTH_SHORT).show();
                 } else {
                     no_data.setVisibility(View.GONE);
 
@@ -88,6 +88,7 @@ public class AnnouncementFragment extends Fragment {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
+                Toast.makeText(getContext(), "No data", Toast.LENGTH_SHORT).show();
             }
         });
 

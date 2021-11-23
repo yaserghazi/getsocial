@@ -32,6 +32,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import sa.edu.getsocial.Adapters.MessageAdapter;
 import sa.edu.getsocial.Models.Chat;
+import sa.edu.getsocial.Models.User;
 import sa.edu.getsocial.Notification.APIService;
 import sa.edu.getsocial.Notification.Notifications.Client;
 import sa.edu.getsocial.Notification.Notifications.Data;

@@ -1,15 +1,4 @@
-package sa.edu.getsocial.Faculty;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.viewpager.widget.ViewPager;
+package sa.edu.getsocial.Student;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -22,6 +11,17 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.viewpager.widget.ViewPager;
+
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
@@ -33,34 +33,32 @@ import com.google.firebase.iid.InstanceIdResult;
 import java.util.ArrayList;
 import java.util.List;
 
-import sa.edu.getsocial.Faculty.Fragments.AnnouncementFragment;
-import sa.edu.getsocial.Faculty.Fragments.ChatFragment;
-import sa.edu.getsocial.Faculty.Fragments.QuizzesFragment;
+import sa.edu.getsocial.Student.Fragments.AnnouncementFragment;
+import sa.edu.getsocial.Student.Fragments.ChatFragment;
+import sa.edu.getsocial.Student.Fragments.QuizzesFragment;
 import sa.edu.getsocial.Notification.Notifications.Token;
 import sa.edu.getsocial.R;
+import sa.edu.getsocial.Student.Fragments.RequestFragment;
 import sa.edu.getsocial.login;
 
-public class FacultyMainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class StudentMainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     TextView labelTitle;
     TabLayout tabLayout;
     ViewPager viewPager;
     DrawerLayout drawer;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_faculty_main);
+        setContentView(R.layout.activity_student_main);
         viewPager = (ViewPager) findViewById(R.id.viewpager);
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         labelTitle = (TextView) findViewById(R.id.label);
-        labelTitle.setText("Announcement");
 
         SharedPreferences editor = getSharedPreferences("login", MODE_PRIVATE);
 
         editor.getString("ID", "");
         //لتخزين توكن الفيربيس لغرض الاشعارات
-        FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(FacultyMainActivity.this,
+        FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(StudentMainActivity.this,
                 new OnSuccessListener<InstanceIdResult>() {
                     @Override
                     public void onSuccess(InstanceIdResult instanceIdResult) {
@@ -71,7 +69,7 @@ public class FacultyMainActivity extends AppCompatActivity implements Navigation
 
                     }
                 });
-        viewPager.setOffscreenPageLimit(3);
+        viewPager.setOffscreenPageLimit(4);
         setupViewPager(viewPager);
         tabLayout.setupWithViewPager(viewPager);
         setupTabIcons();
@@ -79,13 +77,14 @@ public class FacultyMainActivity extends AppCompatActivity implements Navigation
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 if(tab.getPosition()==0){
-                    labelTitle.setText("Announcement");
-
-                }else if(tab.getPosition()==1){
                     labelTitle.setText("Quizzes");
+                }else if(tab.getPosition()==1){
 
-                }else {
+                    labelTitle.setText("Announcement,");
+                }else if(tab.getPosition()==2){
                     labelTitle.setText("Chat");
+                }else if(tab.getPosition()==3){
+                    labelTitle.setText("Request");
                 }
 
                 viewPager.setCurrentItem(tab.getPosition());
@@ -120,12 +119,14 @@ public class FacultyMainActivity extends AppCompatActivity implements Navigation
     }
 
     private void setupTabIcons() {
-        tabLayout.getTabAt(0).setIcon(R.drawable.notification);
+        tabLayout.getTabAt(0).setIcon(R.drawable.logotype);
         tabLayout.getTabAt(0).getIcon().setColorFilter(getResources().getColor(R.color.purple_700), PorterDuff.Mode.SRC_IN);
-        tabLayout.getTabAt(1).setIcon(R.drawable.logotype);
+        tabLayout.getTabAt(1).setIcon(R.drawable.notification);
         tabLayout.getTabAt(1).getIcon().setColorFilter(getResources().getColor(R.color.black), PorterDuff.Mode.SRC_IN);
         tabLayout.getTabAt(2).setIcon(R.drawable.chat);
         tabLayout.getTabAt(2).getIcon().setColorFilter(getResources().getColor(R.color.black), PorterDuff.Mode.SRC_IN);
+        tabLayout.getTabAt(3).setIcon(R.drawable.request);
+        tabLayout.getTabAt(3).getIcon().setColorFilter(getResources().getColor(R.color.black), PorterDuff.Mode.SRC_IN);
 
         for (int i = 0; i < tabLayout.getTabCount(); i++) {
             TabLayout.Tab tab = tabLayout.getTabAt(i);
@@ -137,9 +138,11 @@ public class FacultyMainActivity extends AppCompatActivity implements Navigation
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new AnnouncementFragment());
         adapter.addFragment(new QuizzesFragment());
+        adapter.addFragment(new AnnouncementFragment());
         adapter.addFragment(new ChatFragment());
+        adapter.addFragment(new RequestFragment());
+
         viewPager.setAdapter(adapter);
     }
 
@@ -151,13 +154,16 @@ public class FacultyMainActivity extends AppCompatActivity implements Navigation
         switch (id) {
             case R.id.home:
                 // HomeActivityNew.this.finish();
+
+
                 break;
             case R.id.help:
                 //  Intent intenth = new Intent(FacultyMainActivity.this, HelpActivity.class);
                 //   startActivity(intenth);
+
                 break;
             case R.id.logout:
-                AlertDialog.Builder builder2 = new AlertDialog.Builder(FacultyMainActivity.this);
+                AlertDialog.Builder builder2 = new AlertDialog.Builder(StudentMainActivity.this);
                 builder2.setMessage("Are you exactly logged out?");
                 builder2.setCancelable(true)
                         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {

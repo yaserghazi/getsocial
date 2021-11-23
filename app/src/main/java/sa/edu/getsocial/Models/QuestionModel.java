@@ -7,26 +7,35 @@ import java.util.Date;
 import java.util.Locale;
 
 public class QuestionModel {
-    String  id;
+    String id;
     String q;
     String a1;
     String a2;
     String a3;
     String a4;
-
+    String success;
 
 
     public QuestionModel() {
     }
 
-    public QuestionModel(String id, String q, String a1, String a2, String a3, String a4) {
+    public QuestionModel(String id, String q, String a1, String a2, String a3, String a4, String success) {
         this.id = id;
         this.q = q;
         this.a1 = a1;
         this.a2 = a2;
         this.a3 = a3;
         this.a4 = a4;
+        this.success = success;
 
+    }
+
+    public String getSuccess() {
+        return success;
+    }
+
+    public void setSuccess(String success) {
+        this.success = success;
     }
 
     public String getId() {

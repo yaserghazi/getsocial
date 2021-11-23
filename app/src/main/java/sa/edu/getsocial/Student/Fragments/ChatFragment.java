@@ -1,4 +1,4 @@
-package sa.edu.getsocial.Faculty.Fragments;
+package sa.edu.getsocial.Student.Fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

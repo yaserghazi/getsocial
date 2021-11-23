@@ -25,6 +25,10 @@
         <activity android:name=".login" />
         <activity android:name=".Faculty.AddAnnouncementActivity" />
         <activity android:name=".MessageActivity" />
+        <activity android:name=".Faculty.AddQuizActivity" />
+        <activity android:name=".Student.StudentMainActivity" />
+        <activity android:name=".Student.ResultActivity" />
+        <activity android:name=".Student.QuestionsActivity" />
 
         <service
             android:name=".Notification.Notifications.MyFirebaseMessaging"

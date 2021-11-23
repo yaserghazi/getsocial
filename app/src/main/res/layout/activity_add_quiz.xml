@@ -62,7 +62,6 @@
 
                 android:hint="@string/course_name"
                 android:inputType="text"
-                android:lines="5"
                 android:minHeight="@dimen/_35sdp"
                 android:padding="@dimen/_5sdp"
                 android:textSize="@dimen/_12sdp" />
@@ -153,9 +152,8 @@
                         android:background="@drawable/rounded_edittext_gray"
                         android:gravity="start|center_vertical"
 
-                        android:hint="course name"
+                        android:hint="Question"
                         android:inputType="text"
-                        android:lines="5"
                         android:minHeight="@dimen/_35sdp"
                         android:padding="@dimen/_5sdp"
                         android:textSize="@dimen/_12sdp" />
@@ -274,6 +272,34 @@
                         android:padding="@dimen/_5sdp"
                         android:textSize="@dimen/_12sdp" />
                 </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="@dimen/_10sdp"
+
+                        android:text="Answer Success"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12sdp" />
+
+                    <EditText
+                        android:id="@+id/answer_success"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_30sdp"
+                        android:background="@drawable/rounded_edittext_gray"
+                        android:gravity="start|center_vertical"
+
+                        android:inputType="text"
+
+                        android:maxLength="1"
+                        android:minHeight="@dimen/_35sdp"
+                        android:padding="@dimen/_5sdp"
+                        android:textSize="@dimen/_12sdp" />
+                </LinearLayout>
 
                 <Button
                     android:id="@+id/addQuestion"
@@ -293,7 +319,7 @@
 
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recycler_view"
+                    android:id="@+id/recycler"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
             </androidx.core.widget.NestedScrollView>

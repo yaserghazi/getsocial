@@ -1,4 +1,4 @@
-package sa.edu.getsocial;
+package sa.edu.getsocial.Models;
 
 public class User {
     String id;

@@ -25,7 +25,7 @@ import java.util.List;
 import sa.edu.getsocial.MessageActivity;
 import sa.edu.getsocial.Models.Chat;
 import sa.edu.getsocial.R;
-import sa.edu.getsocial.User;
+import sa.edu.getsocial.Models.User;
 
 
 public class UserChatAdapter extends RecyclerView.Adapter<UserChatAdapter.ViewHolder> {
