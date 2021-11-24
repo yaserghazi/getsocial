@@ -40,6 +40,7 @@ public class QuestionsActivity extends AppCompatActivity {
     int flag = 0;
     public static int marks = 0, correct = 0, wrong = 0;
     TextView score;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,9 +50,9 @@ public class QuestionsActivity extends AppCompatActivity {
         SharedPreferences editor = getSharedPreferences("login", MODE_PRIVATE);
         String Name = editor.getString("Name", "");
         String UID = editor.getString("ID", "");
-         question_list=new ArrayList<>();
+        question_list = new ArrayList<>();
 
-         score = (TextView) findViewById(R.id.textView4);
+        score = (TextView) findViewById(R.id.textView4);
         TextView textView = (TextView) findViewById(R.id.DispName);
 
 
@@ -91,10 +92,8 @@ public class QuestionsActivity extends AppCompatActivity {
 
     }
 
-    public void method(){
+    public void method() {
         tv.setText(question_list.get(flag).getQ());
-
-
         rb1.setText(question_list.get(flag).getA1());
         rb2.setText(question_list.get(flag).getA2());
         rb3.setText(question_list.get(flag).getA3());
@@ -111,14 +110,14 @@ public class QuestionsActivity extends AppCompatActivity {
                 }
                 RadioButton uans = (RadioButton) findViewById(radio_g.getCheckedRadioButtonId());
                 String ansText = uans.getText().toString();
-                String SuccessP="";
-                if(question_list.get(flag).getSuccess().toLowerCase().equals("a")){
-                    SuccessP=question_list.get(flag).getA1();
-                }else if(question_list.get(flag).getSuccess().toLowerCase().equals("b")){
-                    SuccessP=question_list.get(flag).getA2();
-                }else if(question_list.get(flag).getSuccess().toLowerCase().equals("c")){
-                    SuccessP=question_list.get(flag).getA3();
-                }else if(question_list.get(flag).getSuccess().toLowerCase().equals("d")) {
+                String SuccessP = "";
+                if (question_list.get(flag).getSuccess().toLowerCase().equals("a")) {
+                    SuccessP = question_list.get(flag).getA1();
+                } else if (question_list.get(flag).getSuccess().toLowerCase().equals("b")) {
+                    SuccessP = question_list.get(flag).getA2();
+                } else if (question_list.get(flag).getSuccess().toLowerCase().equals("c")) {
+                    SuccessP = question_list.get(flag).getA3();
+                } else if (question_list.get(flag).getSuccess().toLowerCase().equals("d")) {
                     SuccessP = question_list.get(flag).getA4();
                 }
 //                Toast.makeText(getApplicationContext(), ansText, Toast.LENGTH_SHORT).show();

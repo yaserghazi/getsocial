@@ -12,7 +12,7 @@ public class AnnouncementModel {
 
     String announcement;
     String link;
-    long createdAt;
+    String time;
 
     public AnnouncementModel() {
     }
@@ -22,8 +22,17 @@ public class AnnouncementModel {
         this.title = title;
         this.announcement = announcement;
         this.link = link;
-        createdAt = new Date().getTime();
+        time = String.valueOf(System.currentTimeMillis());
 
+    }
+
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
     }
 
     public String getId() {
@@ -59,11 +68,11 @@ public class AnnouncementModel {
     }
 
     @Exclude
-    public String getFormattedTime() {
+    public String getFormattedTime(String createdAt) {
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd", Locale.US);
         Date date = new Date();
-        date.setTime(createdAt);
+        date.setTime(Long.parseLong(createdAt));
         return sdf.format(date);
     }
 }

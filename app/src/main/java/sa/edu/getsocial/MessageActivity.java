@@ -109,7 +109,8 @@ public class MessageActivity extends AppCompatActivity {
         });
 
 
-        reference = FirebaseDatabase.getInstance("https://getsocial-3f61c-default-rtdb.firebaseio.com/").getReference("User").child(userid);
+        reference = FirebaseDatabase.getInstance("https://getsocial-3f61c-default-rtdb.firebaseio.com/").
+                getReference("User").child(userid);
 
         reference.addValueEventListener(new ValueEventListener() {
             @Override

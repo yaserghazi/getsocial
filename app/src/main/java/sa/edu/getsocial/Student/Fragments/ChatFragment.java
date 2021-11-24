@@ -73,15 +73,11 @@ public class ChatFragment extends Fragment {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     User user = snapshot.getValue(User.class);
 
-                    if (user != null && user.getId() != null ) {
-
+                    if (user != null && user.getId() != null) {
                         try {
                             mUsers.add(user);
-
                         } catch (Exception e) {
                         }
-
-
                     }
                 }
 

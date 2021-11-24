@@ -4,11 +4,13 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Yaser Jebril/Desktop/getsocial/app/src/main/res/layout/activity_add_quiz.xml" value="0.27291666666666664" />
+        <entry key="..\:/Users/Yaser Jebril/Desktop/getsocial/app/src/main/res/layout/activity_add_request.xml" value="0.25" />
         <entry key="..\:/Users/Yaser Jebril/Desktop/getsocial/app/src/main/res/layout/activity_message.xml" value="0.27291666666666664" />
         <entry key="..\:/Users/Yaser Jebril/Desktop/getsocial/app/src/main/res/layout/activity_questions.xml" value="0.22" />
         <entry key="..\:/Users/Yaser Jebril/Desktop/getsocial/app/src/main/res/layout/activity_result.xml" value="0.33" />
         <entry key="..\:/Users/Yaser Jebril/Desktop/getsocial/app/src/main/res/layout/activity_student_main.xml" value="0.25" />
         <entry key="..\:/Users/Yaser Jebril/Desktop/getsocial/app/src/main/res/layout/card_ques.xml" value="0.27291666666666664" />
+        <entry key="..\:/Users/Yaser Jebril/Desktop/getsocial/app/src/main/res/layout/card_request.xml" value="0.21197916666666666" />
         <entry key="..\:/Users/Yaser Jebril/Desktop/getsocial/app/src/main/res/layout/fragment_ann.xml" value="0.27291666666666664" />
         <entry key="..\:/Users/Yaser Jebril/Desktop/getsocial/app/src/main/res/layout/fragment_list.xml" value="0.19479166666666667" />
         <entry key="..\:/getsocial/app/src/main/res/drawable/background_left.xml" value="0.2203125" />

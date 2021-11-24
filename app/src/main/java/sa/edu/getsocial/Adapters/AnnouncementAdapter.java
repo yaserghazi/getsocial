@@ -38,7 +38,7 @@ public class AnnouncementAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
         final AnnouncementModel model = list.get(position);
         holder1.name.setText(model.getAnnouncement() + "");
-        holder1.date.setText(model.getFormattedTime() + "");
+        holder1.date.setText(model.getFormattedTime(model.getTime()) + "");
         holder1.title.setText(" " + model.getTitle() + "");
         holder1.link.setText(" " + model.getLink() + "");
 

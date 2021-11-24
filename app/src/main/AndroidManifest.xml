@@ -29,6 +29,7 @@
         <activity android:name=".Student.StudentMainActivity" />
         <activity android:name=".Student.ResultActivity" />
         <activity android:name=".Student.QuestionsActivity" />
+        <activity android:name=".Student.AddRequestActivity" />
 
         <service
             android:name=".Notification.Notifications.MyFirebaseMessaging"

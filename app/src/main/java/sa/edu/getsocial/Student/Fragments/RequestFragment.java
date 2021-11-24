@@ -23,16 +23,17 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import sa.edu.getsocial.Adapters.AnnouncementAdapter;
+import sa.edu.getsocial.Adapters.RequestAdapter;
 import sa.edu.getsocial.Faculty.AddAnnouncementActivity;
-import sa.edu.getsocial.Models.AnnouncementModel;
+import sa.edu.getsocial.Models.RequestModel;
 import sa.edu.getsocial.R;
+import sa.edu.getsocial.Student.AddRequestActivity;
 
 
 public class RequestFragment extends Fragment {
 
-    List<AnnouncementModel> resultsList;
-    AnnouncementAdapter nAdapter;
+    List<RequestModel> resultsList;
+    RequestAdapter nAdapter;
     RecyclerView recyclerView;
     ProgressBar progress_bar;
 
@@ -48,8 +49,8 @@ public class RequestFragment extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_ann, container, false);
 
-        DatabaseReference databaseReference = FirebaseDatabase.
-                getInstance("https://getsocial-3f61c-default-rtdb.firebaseio.com/")
+        DatabaseReference databaseReference = FirebaseDatabase
+                .getInstance("https://getsocial-3f61c-default-rtdb.firebaseio.com/")
                 .getReference().child("Request");
 
         TextView no_data = (TextView) view.findViewById(R.id.no_data);
@@ -61,7 +62,7 @@ public class RequestFragment extends Fragment {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setHasFixedSize(true);
 
-        nAdapter = new AnnouncementAdapter(getContext(), resultsList);
+        nAdapter = new RequestAdapter(getContext(), resultsList);
         recyclerView.setAdapter(nAdapter);
 
         progress_bar.setVisibility(View.VISIBLE);
@@ -73,14 +74,13 @@ public class RequestFragment extends Fragment {
                 progress_bar.setVisibility(View.GONE);
 
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    AnnouncementModel model = snapshot.getValue(AnnouncementModel.class);
+                    RequestModel model = snapshot.getValue(RequestModel.class);
                     resultsList.add(model);
                     nAdapter.notifyDataSetChanged();
                 }
                 if (resultsList.size() == 0) {
                     no_data.setVisibility(View.VISIBLE);
-                    Toast.makeText(getContext(), "No data", Toast.LENGTH_SHORT).show();
-                } else {
+                 } else {
                     no_data.setVisibility(View.GONE);
 
                 }
@@ -88,14 +88,13 @@ public class RequestFragment extends Fragment {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                Toast.makeText(getContext(), "No data", Toast.LENGTH_SHORT).show();
-            }
+             }
         });
 
         view.findViewById(R.id.add_fab).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getContext(), AddAnnouncementActivity.class);
+                Intent intent = new Intent(getContext(), AddRequestActivity.class);
                 startActivity(intent);
 
             }
