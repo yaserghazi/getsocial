@@ -1,14 +1,15 @@
-package sa.edu.getsocial.Student.Fragments;
+package sa.edu.getsocial.Student;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -24,32 +25,34 @@ import java.util.ArrayList;
 import java.util.List;
 
 import sa.edu.getsocial.Adapters.RequestAdapter;
-import sa.edu.getsocial.Faculty.AddAnnouncementActivity;
-import sa.edu.getsocial.MessageActivity;
 import sa.edu.getsocial.Models.RequestModel;
 import sa.edu.getsocial.R;
-import sa.edu.getsocial.Student.AddRequestActivity;
-import sa.edu.getsocial.Student.MyRequestActivity;
 
 
-public class RequestFragment extends Fragment {
+public class MyRequestActivity extends AppCompatActivity {
 
     List<RequestModel> resultsList;
     RequestAdapter nAdapter;
     RecyclerView recyclerView;
     ProgressBar progress_bar;
 
-    public RequestFragment() {
+    public MyRequestActivity() {
         // Required empty public constructor
     }
 
     View view;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_ann, container, false);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_my_request);
+        findViewById(R.id.back).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+        SharedPreferences editor = getSharedPreferences("login", MODE_PRIVATE);
 
         DatabaseReference databaseReference = FirebaseDatabase
                 .getInstance("https://getsocial-3f61c-default-rtdb.firebaseio.com/")
@@ -60,18 +63,17 @@ public class RequestFragment extends Fragment {
         view.findViewById(R.id.my_requst_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getContext(), MyRequestActivity.class);
-                startActivity(intent);
+
             }
         });
         recyclerView = view.findViewById(R.id.recycler);
         resultsList = new ArrayList<>();
         progress_bar = (ProgressBar) view.findViewById(R.id.progress_bar);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.setLayoutManager(new LinearLayoutManager(MyRequestActivity.this));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setHasFixedSize(true);
 
-        nAdapter = new RequestAdapter(getContext(), resultsList);
+        nAdapter = new RequestAdapter(MyRequestActivity.this, resultsList);
         recyclerView.setAdapter(nAdapter);
 
         progress_bar.setVisibility(View.VISIBLE);
@@ -84,7 +86,8 @@ public class RequestFragment extends Fragment {
 
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     RequestModel model = snapshot.getValue(RequestModel.class);
-                    resultsList.add(model);
+                    if (model.getUID().equals(editor.getString("ID", "")))
+                        resultsList.add(model);
                     nAdapter.notifyDataSetChanged();
                 }
                 if (resultsList.size() == 0) {
@@ -103,11 +106,10 @@ public class RequestFragment extends Fragment {
         view.findViewById(R.id.add_fab).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getContext(), AddRequestActivity.class);
+                Intent intent = new Intent(MyRequestActivity.this, AddRequestActivity.class);
                 startActivity(intent);
 
             }
         });
-        return view;
     }
 }
