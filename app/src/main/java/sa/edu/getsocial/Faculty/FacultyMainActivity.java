@@ -166,6 +166,9 @@ public class FacultyMainActivity extends AppCompatActivity implements Navigation
                                 SharedPreferences.Editor editor = getSharedPreferences("login", MODE_PRIVATE).edit();
                                 editor.clear();
                                 editor.apply();
+                                SharedPreferences.Editor editorcheckbox = getSharedPreferences("checkbox", MODE_PRIVATE).edit();
+                                editorcheckbox.clear();
+                                editorcheckbox.apply();
 
                                 Intent newActivity6 = new Intent(getApplicationContext(), login.class);
                                 startActivity(newActivity6);
