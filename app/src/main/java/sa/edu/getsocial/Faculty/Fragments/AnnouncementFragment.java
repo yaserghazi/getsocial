@@ -1,6 +1,9 @@
 package sa.edu.getsocial.Faculty.Fragments;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -22,6 +25,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import sa.edu.getsocial.Adapters.AnnouncementAdapter;
@@ -54,6 +58,17 @@ public class AnnouncementFragment extends Fragment {
                 .getReference().child("Announcement");
 
         TextView no_data = (TextView) view.findViewById(R.id.no_data);
+        view.findViewById(R.id.Label).setVisibility(View.VISIBLE);
+
+        view.findViewById(R.id.Profile_L).setVisibility(View.VISIBLE);
+        SharedPreferences sharedPreferences = getContext().getSharedPreferences("login", MODE_PRIVATE);
+        sharedPreferences.getString("Uid", "");
+        TextView name = (TextView) view.findViewById(R.id.name);
+        name.setText(sharedPreferences.getString("Name", ""));
+        TextView email = (TextView) view.findViewById(R.id.email);
+        email.setText(sharedPreferences.getString("Name", "")+"@psau.edu.sa");
+        TextView id = (TextView) view.findViewById(R.id.id);
+        id.setText(sharedPreferences.getString("ID", ""));
 
         recyclerView = view.findViewById(R.id.recycler);
         resultsList = new ArrayList<>();
@@ -76,8 +91,10 @@ public class AnnouncementFragment extends Fragment {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     AnnouncementModel model = snapshot.getValue(AnnouncementModel.class);
                     resultsList.add(model);
-                    nAdapter.notifyDataSetChanged();
                 }
+                Collections.reverse(resultsList);
+                nAdapter.notifyDataSetChanged();
+
                 if (resultsList.size() == 0) {
                     no_data.setVisibility(View.VISIBLE);
                 } else {

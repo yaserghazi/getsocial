@@ -1,6 +1,8 @@
 package sa.edu.getsocial.Student.Fragments;
 
-import android.content.Intent;
+import static android.content.Context.MODE_PRIVATE;
+
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,10 +23,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import sa.edu.getsocial.Adapters.AnnouncementAdapter;
-import sa.edu.getsocial.Faculty.AddAnnouncementActivity;
 import sa.edu.getsocial.Models.AnnouncementModel;
 import sa.edu.getsocial.R;
 
@@ -53,8 +55,21 @@ public class AnnouncementFragment extends Fragment {
                 .getReference().child("Announcement");
 
         TextView no_data = (TextView) view.findViewById(R.id.no_data);
+        view.findViewById(R.id.Label).setVisibility(View.VISIBLE);
+
+        view.findViewById(R.id.Profile_L).setVisibility(View.VISIBLE);
+        SharedPreferences sharedPreferences = getContext().getSharedPreferences("login", MODE_PRIVATE);
+        sharedPreferences.getString("Uid", "");
+        TextView name = (TextView) view.findViewById(R.id.name);
+        name.setText(sharedPreferences.getString("Name", ""));
+        TextView email = (TextView) view.findViewById(R.id.email);
+        email.setText(sharedPreferences.getString("Name", "")+"@psau.edu.sa");
+        TextView id = (TextView) view.findViewById(R.id.id);
+        id.setText(sharedPreferences.getString("ID", ""));
+
 
         recyclerView = view.findViewById(R.id.recycler);
+
         resultsList = new ArrayList<>();
         progress_bar = (ProgressBar) view.findViewById(R.id.progress_bar);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -75,8 +90,10 @@ public class AnnouncementFragment extends Fragment {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     AnnouncementModel model = snapshot.getValue(AnnouncementModel.class);
                     resultsList.add(model);
-                    nAdapter.notifyDataSetChanged();
+
                 }
+                Collections.reverse(resultsList);
+                nAdapter.notifyDataSetChanged();
                 if (resultsList.size() == 0) {
                     no_data.setVisibility(View.VISIBLE);
                     Toast.makeText(getContext(), "No data", Toast.LENGTH_SHORT).show();

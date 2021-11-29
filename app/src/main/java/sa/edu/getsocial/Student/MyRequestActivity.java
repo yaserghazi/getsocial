@@ -59,7 +59,7 @@ public class MyRequestActivity extends AppCompatActivity {
                 .getReference().child("Request");
 
         TextView no_data = (TextView) view.findViewById(R.id.no_data);
-
+        view.findViewById(R.id.my_requst_btn).setVisibility(View.VISIBLE);
         view.findViewById(R.id.my_requst_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -75,6 +75,12 @@ public class MessageActivity extends AppCompatActivity {
 //        getSupportActionBar().setTitle("Chat");
         //      getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        findViewById(R.id.back).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
         apiService = Client.getClient("https://fcm.googleapis.com/").create(APIService.class);
 

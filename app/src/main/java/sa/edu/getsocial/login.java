@@ -62,7 +62,7 @@ public class login extends AppCompatActivity {
                 Intent intent = new Intent(login.this, FacultyMainActivity.class);
                 startActivity(intent);
             }
-
+            finish();
         } else if (checkbox.equals("false")) {
             Toast.makeText(this, "Please Sign in", Toast.LENGTH_SHORT).show();
         }
@@ -108,8 +108,10 @@ public class login extends AppCompatActivity {
     }
 
     boolean isPressed = true;
+    boolean isTrue = false;
 
     private void checkEmailAndPassword(String userName, String password) {
+        isTrue = false;
         DatabaseReference databaseReference = FirebaseDatabase.getInstance("https://getsocial-3f61c-default-rtdb.firebaseio.com/")
                 .getReference().child("User");
         databaseReference.addValueEventListener(new ValueEventListener() {
@@ -119,13 +121,13 @@ public class login extends AppCompatActivity {
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                         User user = snapshot.getValue(User.class);
                         if (user.getUsername().equalsIgnoreCase(userName) &&
-                                user.getPassword().equalsIgnoreCase(password)) {
+                                user.getPassword().equals(password)) {
                             SharedPreferences.Editor editor = getSharedPreferences("login", MODE_PRIVATE).edit();
                             editor.putString("Name", user.getUsername());
                             editor.putString("ID", user.getId());
                             editor.putString("email", user.getEmail());
                             editor.putInt("UserType", user.getType());
-
+                            isTrue = true;
                             editor.apply();
                             dialog.dismiss();
 
@@ -143,6 +145,15 @@ public class login extends AppCompatActivity {
                             }
                         }
                     }
+                if (isPressed) {
+                    if (!isTrue) {
+                        dialog.dismiss();
+                        Toast.makeText(login.this, "Username Or password Wrong", Toast.LENGTH_SHORT).show();
+                    }
+
+
+                }
+
             }
 
             @Override

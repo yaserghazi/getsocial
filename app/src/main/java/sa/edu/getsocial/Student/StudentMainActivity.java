@@ -80,7 +80,7 @@ public class StudentMainActivity extends AppCompatActivity implements Navigation
                     labelTitle.setText("Quizzes");
                 }else if(tab.getPosition()==1){
 
-                    labelTitle.setText("Announcement,");
+                    labelTitle.setText("Announcement");
                 }else if(tab.getPosition()==2){
                     labelTitle.setText("Chat");
                 }else if(tab.getPosition()==3){

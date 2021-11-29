@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="@dimen/_5sdp">
@@ -20,12 +20,15 @@
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/profile_image"
                 android:layout_width="@dimen/_40sdp"
-                android:layout_height="@dimen/_40sdp" />
+                android:layout_height="@dimen/_40sdp"
+                android:layout_alignParentEnd="true" />
 
             <TextView
                 android:id="@+id/username"
                 android:layout_width="wrap_content"
+
                 android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
                 android:layout_gravity="center"
                 android:layout_marginStart="@dimen/_15sdp"
                 android:layout_marginEnd="@dimen/_15sdp"
@@ -33,7 +36,16 @@
                 android:textSize="@dimen/_16sdp"
                 android:textStyle="bold" />
 
-        </LinearLayout>
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="@dimen/_12sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:background="@drawable/arrow_left"
+                android:backgroundTint="@color/white" />
+        </RelativeLayout>
 
     </com.google.android.material.appbar.AppBarLayout>
 
