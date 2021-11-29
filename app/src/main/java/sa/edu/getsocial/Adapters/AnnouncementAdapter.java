@@ -54,42 +54,51 @@ public class AnnouncementAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         holder1.date.setText(model.getFormattedTime(model.getTime()) + "");
         holder1.title.setText(" " + model.getTitle() + "");
         holder1.link.setText(" " + model.getLink() + "");
+
         SharedPreferences sharedPreferences = context.getSharedPreferences("login", MODE_PRIVATE);
         if (sharedPreferences.getInt("UserType", 0) == 2) {
             holder1.delete.setVisibility(View.VISIBLE);
-            AlertDialog myQuittingDialogBox = new AlertDialog.Builder(context)
-                    // set message, title, and icon
-                    .setTitle("Delete")
-                    .setMessage("Are you sure of Delete?")
-                    .setPositiveButton("ok", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int whichButton) {
-                            //your deleting code
-                            dialog.dismiss();
-                            holder1.dialog1.show();
-                            holder1.mdatabase.child(model.getId())
-                                    .removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
-                                    holder1.dialog1.dismiss();
-                                    Toast.makeText(context, "Deleted", Toast.LENGTH_SHORT).show();
-                                    notifyDataSetChanged();
+            holder1.delete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    AlertDialog myQuittingDialogBox = new AlertDialog.Builder(context)
+                            // set message, title, and icon
+                            .setTitle("Delete")
+                            .setMessage("Are you sure of Delete?")
+                            .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int whichButton) {
+                                    //your deleting code
+                                    dialog.dismiss();
+                                    holder1.dialog1.show();
+                                    holder1.mdatabase.child(model.getId())
+                                            .removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            holder1.dialog1.dismiss();
+                                            Toast.makeText(context, "Deleted", Toast.LENGTH_SHORT).show();
+                                            notifyDataSetChanged();
+
+                                        }
+                                    });
+
 
                                 }
-                            });
 
+                            })
+                            .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
 
-                        }
+                                    dialog.dismiss();
 
-                    })
-                    .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
+                                }
+                            })
+                            .create();
+                    myQuittingDialogBox.show();
+                }
+            });
 
-                            dialog.dismiss();
-
-                        }
-                    })
-                    .create();
-            myQuittingDialogBox.show();
+        }else {
+            holder1.delete.setVisibility(View.GONE);
         }
 
     }

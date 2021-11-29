@@ -50,7 +50,7 @@ public class login extends AppCompatActivity {
         b1 = findViewById(R.id.button);
         remember = findViewById(R.id.checkBox);
         /* Describe the logic when the login button is clicked */
-        SharedPreferences preferences = getSharedPreferences("checkbox", MODE_PRIVATE);
+        SharedPreferences preferences = getSharedPreferences("checkbox1", MODE_PRIVATE);
         String checkbox = preferences.getString("remember", " ");
 
         SharedPreferences editor = getSharedPreferences("login", MODE_PRIVATE);
@@ -70,13 +70,13 @@ public class login extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if (compoundButton.isChecked()) {
-                    SharedPreferences preferences = getSharedPreferences("checkbox", MODE_PRIVATE);
+                    SharedPreferences preferences = getSharedPreferences("checkbox1", MODE_PRIVATE);
                     SharedPreferences.Editor editor = preferences.edit();
                     editor.putString("remember", "true");
                     editor.apply();
                     Toast.makeText(login.this, "Checked", Toast.LENGTH_SHORT).show();
                 } else if (!compoundButton.isChecked()) {
-                    SharedPreferences preferences = getSharedPreferences("checkbox", MODE_PRIVATE);
+                    SharedPreferences preferences = getSharedPreferences("checkbox1", MODE_PRIVATE);
                     SharedPreferences.Editor editor = preferences.edit();
                     editor.putString("remember", "false");
                     editor.apply();
